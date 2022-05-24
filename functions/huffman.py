@@ -3,7 +3,7 @@ import numpy as np
 import collections
 
 # Implemetación adaptada de https://rosettacode.org/wiki/Huffman_coding#Python
-def codingHuffman(arr):
+def huffman(arr):
     dendograma = [[frequencia/len(arr), [simbolo, ""]] for simbolo, frequencia in collections.Counter(arr).items()]
     heapq.heapify(dendograma)
     # Crear el código
@@ -31,7 +31,7 @@ def codingHuffman(arr):
     return dendograma
 
 
-def decodingHuffman(arr_codificado,dendograma):
+def decoding_huffman(arr_codificado,dendograma):
     dendograma_inverso =  {codigo: simbolo for simbolo, codigo in dendograma.items()}
     #print(dendograma_inverso)
 
