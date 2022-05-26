@@ -4,6 +4,7 @@ from pathlib import Path
 from bitarray import bitarray
 from time import time
 import csv
+from sys import getsizeof
 
 
 
@@ -23,7 +24,7 @@ def main():
     print("Archivo cargado, ", get_size(txt))
     print(n_iter," Iteraciones..")
 
-    rows = [["compresion", "codificacion", "guardado", "total"]]
+    rows = [["compresion", "codificacion", "guardado", "total", "espacio utilizado"]]
 
 
     for i in range(n_iter):
@@ -34,6 +35,7 @@ def main():
 
         encode_time_1 = time()
         dendograma_bitarray = {k: bitarray(v) for k, v in dendograma.items()}
+
         bits = bitarray()
         bits.encode(dendograma_bitarray, txt)
         encode_time_2 = time()
@@ -43,8 +45,9 @@ def main():
             bits.tofile(fh)
         save_time_2 = time()
 
+        total_size = convert_size(getsizeof(dendograma) + getsizeof(dendograma_bitarray) + getsizeof(bits))
 
-        rows.append([compress_time_2-compress_time_1,encode_time_2-encode_time_1,save_time_2-save_time_1,save_time_2 - compress_time_1])
+        rows.append([compress_time_2-compress_time_1,encode_time_2-encode_time_1,save_time_2-save_time_1,save_time_2 - compress_time_1, total_size])
 
    
     with open('./data/' + type_of_compression + '_10_time_results_' + filename + '.csv', 'w') as file:

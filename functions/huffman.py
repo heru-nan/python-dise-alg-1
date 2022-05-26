@@ -1,9 +1,10 @@
 import heapq
 import numpy as np
 import collections
+from functions.index import get_size
 
 # Implemetación adaptada de https://rosettacode.org/wiki/Huffman_coding#Python
-def huffman(arr):
+def huffman(arr, return_sizes=False):
     dendograma = [[frequencia/len(arr), [simbolo, ""]] for simbolo, frequencia in collections.Counter(arr).items()]
     heapq.heapify(dendograma)
     # Crear el código
@@ -16,6 +17,7 @@ def huffman(arr):
             codigo[1] = '1' + codigo[1]
         heapq.heappush(dendograma, [lo[0] + hi[0]] + lo[1:] + hi[1:])
 
+    if (return_sizes): print("heap", get_size(heapq))
     dendograma = sorted(heapq.heappop(dendograma)[1:])
     dendograma = {simbolo : codigo for simbolo, codigo in dendograma} 
 
