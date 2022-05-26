@@ -2,6 +2,10 @@ import sys
 from functions.index import *
 from pathlib import Path
 from bitarray import bitarray
+from time import time
+# TODO TASA DE COMPRESION Y ESPACIO UTILIZADO
+# Media armonica
+
 
 def main():
     print(sys.argv)
@@ -17,22 +21,30 @@ def main():
 
     print("Archivo cargado, ", get_size(txt))
     
-    # tiempo 1
+    compress_time_1 =time()
     dendograma = huffman(txt) if type_of_compression == "h" else shannon_fano(txt)
-    # tiempo 1
-    
-    # tiempo 2
+    compress_time_2 =time()
 
+    print("dendograma, ", get_size(dendograma))
+    
+
+    encode_time_1 = time()
     dendograma_bitarray = {k: bitarray(v) for k, v in dendograma.items()}
     bits = bitarray()
     bits.encode(dendograma_bitarray, txt)
-    # tiempo 2
+    encode_time_2 = time()
 
-    # tiempo 3
+    print("bitarray, ", get_size(bits))
+
+    save_time_1 = time()
     with open('./data/encode/' + type_of_compression + "_" + filename, 'wb') as fh:
         bits.tofile(fh)
-    # tiempo 3
-
+    save_time_2 = time()
+    
+    print("Tiempo de Compresion(Shannon o Huffman): ", compress_time_2-compress_time_1, " segundos")
+    print("Tiempo de Codificacion a bitstram: ", encode_time_2-encode_time_1, " segundos")
+    print("Tiempo de Guardad en archivo: ", save_time_2-save_time_1)
+    print("Tiempo total: ", save_time_2 - compress_time_1, " segundos")
 
 if __name__ == '__main__':
    main()
