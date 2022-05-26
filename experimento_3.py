@@ -47,7 +47,7 @@ def main():
         rows.append([compress_time_2-compress_time_1,encode_time_2-encode_time_1,save_time_2-save_time_1,save_time_2 - compress_time_1])
 
    
-    with open('./data/s_10_time_results.csv', 'w') as file:
+    with open('./data/' + type_of_compression + '_10_time_results_' + filename + '.csv', 'w') as file:
         writer = csv.writer(file)
         for row in rows:
             writer.writerow(row)
