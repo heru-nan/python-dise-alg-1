@@ -14,7 +14,7 @@
 
 ##Experimento 2:
 
-    python experimento_2.py 10 h_english.100MB d_h_english.100MB
+    python experimento_2.py h_english.100MB d_h_english.100MB
 
 ##Experimento 3:
 

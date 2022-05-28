@@ -61,9 +61,8 @@ def get_portion_decode(j, k, bits, dendograma):
 def main():
     print(sys.argv)
     script = sys.argv[0]
-    flags=sys.argv[1]
-    filename=sys.argv[2]
-    filename_dendograma=sys.argv[3]
+    filename=sys.argv[1]
+    filename_dendograma=sys.argv[2]
 
     bits = bitarray()
     dendograma = None
