@@ -37,6 +37,26 @@ def find_correct_left_position(bits, j, k, dendograma):
 
     return j
 
+def get_portion_decode(j, k, bits, dendograma):
+    j = find_correct_left_position(bits, j, k, dendograma)
+
+    dendograma_bitarray = {k: bitarray(v) for k, v in dendograma.items()}
+    bits_removed = 0
+    decode_txt = ""
+    while(True):
+        try:
+            d = bits[j:j+k].decode(decodetree(dendograma_bitarray))
+            decode_txt = "".join(d)
+            break
+        except Exception:
+            bits_removed = bits_removed + 1
+            k = k - 1
+            if bits_removed == 100:
+                break
+
+    return decode_txt
+
+
 
 def main():
     print(sys.argv)
@@ -58,21 +78,7 @@ def main():
     j = random.randint(0,n_bits)
     k = random.randint(j,n_bits)
 
-    j = find_correct_left_position(bits, j, k, dendograma)
-
-    dendograma_bitarray = {k: bitarray(v) for k, v in dendograma.items()}
-    bits_removed = 0
-    decode_txt = ""
-    while(True):
-        try:
-            d = bits[j:j+k].decode(decodetree(dendograma_bitarray))
-            decode_txt = "".join(d)
-            break
-        except Exception:
-            bits_removed = bits_removed + 1
-            k = k - 1
-            if bits_removed == 100:
-                break
+    txt = get_portion_decode(j, k, bits, dendograma)
     
 if __name__ == '__main__':
    main()
