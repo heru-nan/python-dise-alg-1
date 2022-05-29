@@ -60,6 +60,10 @@ def main():
     script = sys.argv[0]
     filename=sys.argv[1]
     filename_dendograma=sys.argv[2]
+    
+    verbose = None
+    if(len(sys.argv) > 3):
+        verbose = True
 
     bits = bitarray()
     dendograma = None
@@ -74,13 +78,16 @@ def main():
     j = random.randint(0,n_bits)
     k = random.randint(j,n_bits)
 
+    txt = get_portion_decode(j, k, bits, dendograma)
+
+    if(verbose): print(txt)
+
     print("(j, k): (", j , " ,", k, ")")
 
     print("Longitud de Bits: ", len(bits[j: j + k]))
-
-    txt = get_portion_decode(j, k, bits, dendograma)
-
     print("Longitud text: ", len(txt))
+
+    
     
 if __name__ == '__main__':
    main()
