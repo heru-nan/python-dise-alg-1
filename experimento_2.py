@@ -17,13 +17,10 @@ def find_correct_left_position(bits, j, k, dendograma):
     flag = True
     j = j - 1
     while(flag):
-        
-        print(j)
         d_list = list(dendograma.values())
         for idx, bit in enumerate(bits[j:j+k]):
             d_list = filter_list(d_list, bit, idx)
             if(len(d_list) == 1): 
-                print(d_list)
                 flag = False
                 break
             if(len(d_list) == 0):
@@ -57,7 +54,7 @@ def get_portion_decode(j, k, bits, dendograma):
     return decode_txt
 
 
-
+ 
 def main():
     print(sys.argv)
     script = sys.argv[0]
@@ -77,7 +74,13 @@ def main():
     j = random.randint(0,n_bits)
     k = random.randint(j,n_bits)
 
+    print("(j, k): (", j , " ,", k, ")")
+
+    print("Longitud de Bits: ", len(bits[j: j + k]))
+
     txt = get_portion_decode(j, k, bits, dendograma)
+
+    print("Longitud text: ", len(txt))
     
 if __name__ == '__main__':
    main()
