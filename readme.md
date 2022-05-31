@@ -41,7 +41,7 @@ Archivos de codificacion general y decodificacion general: encode.py y decode.py
 
 ##Experimento 1:
 
-    python
+    python experimento_1.py h_dna.100MB d_h_dna.100MB
 
 ##Experimento 2:
 
