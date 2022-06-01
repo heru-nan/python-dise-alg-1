@@ -2,6 +2,7 @@ import sys
 from pathlib import Path
 from functions.index import *
 import random
+from functions.encode import encode
 from bitarray import bitarray, decodetree
 from time import time
 import pickle
@@ -30,14 +31,7 @@ def get_portion_decode(j, k, bits, dendograma):
 
     return decode_txt
 
-
- 
-def main():
-    print(sys.argv)
-    script = sys.argv[0]
-    filename=sys.argv[1]
-    filename_dendograma=sys.argv[2]
-    
+def Extract(filename):
     verbose = None
     if(len(sys.argv) > 3):
         verbose = True
@@ -51,18 +45,39 @@ def main():
         dendograma = pickle.load(f)
 
     n_bits = len(bits)
-
+    print(filename,n_bits)
     k = random.randint(0,n_bits)
     
     txt = get_portion_decode(0, k, bits, dendograma)
 
     if(verbose): print(txt)
-
     print("(0, k): (", 0, " ,", k, ")")
 
-    print("Longitud de Bits: ", len(bits[0:k]))
-    print("Longitud text: ", len(txt))
-    
+
+def main():
+    print(sys.argv)
+    script = sys.argv[0]
+    filename=sys.argv[1]
+    repeticiones=sys.argv[2]
+    print(len(filename))
+
+    shannon=encode("s",filename)
+    huffman=encode("h",filename)
+    print()
+
+    for i in range (int(repeticiones)):
+        print("Ejecucion",i+1,"=")
+        time_shannon1 = time()
+        Extract(shannon)
+        time_shannon2 = time()
+
+        time_huffman1 = time()
+        Extract(huffman)
+        time_huffman2 = time()
+        
+        print("El tiempo de shannon:",time_shannon2-time_shannon1)
+        print("El tiempo de huffman:",time_huffman2-time_huffman1)
+        print()
 
     
     
