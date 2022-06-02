@@ -48,6 +48,7 @@ Archivos de codificacion general y decodificacion general: encode.py y decode.py
     python experimento_1.py english.100MB n
 
     n=Las veces que se ejecutara el experimento
+    los archivos h_dna.100MB,f_dna.100MB y h_english.100MB f_english.100MB, deberan estar creados en las carperta ./data/encode, para esto se debera ejecutar la codificacion de cada uno de ellos.
 
 ##Experimento 2:
 

@@ -6,13 +6,6 @@ from bitarray import bitarray, decodetree
 from time import time
 import pickle
 
-def filter_list(values, x, idx):
-    new_list = []
-    for val in values:
-        if (len(val) > idx and int(val[idx]) == x): new_list.append(val)
-    return new_list
-
-
 def get_portion_decode(k, bits, dendograma):
     dendograma_bitarray = {k: bitarray(v) for k, v in dendograma.items()}
     bits_removed = 0
@@ -57,8 +50,8 @@ def main():
     filename=sys.argv[1]
     repeticiones=sys.argv[2]
     
-    txt = Path('./data/' + filename).read_text(encoding='Latin-1')#recuperamos el texto 
-    shannon=("s_" + filename)#codificamos el texto entregado
+    txt = Path('./data/' + filename).read_text(encoding='Latin-1') 
+    shannon=("s_" + filename)
     huffman=("h_" + filename)
     print()
 
