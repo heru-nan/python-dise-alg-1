@@ -20,15 +20,6 @@ def huffman(arr, return_sizes=False):
     if (return_sizes): print("heap", get_size(heapq))
     dendograma = sorted(heapq.heappop(dendograma)[1:])
     dendograma = {simbolo : codigo for simbolo, codigo in dendograma} 
-
-    # texto_codificado = ""
-    # for letra in arr:
-    #     texto_codificado += dendograma[letra]
-    
-    # if (len(texto_codificado)% 8 != 0):
-    #     texto_codificado= texto_codificado.ljust(((8-len(texto_codificado)% 8))+len(texto_codificado),'1')
-    # code = (texto_codificado[:1000])
-
     
     return dendograma
 
